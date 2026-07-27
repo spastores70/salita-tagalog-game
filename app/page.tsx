@@ -24,7 +24,7 @@ const LEVELS: Level[] = [
   { id: 9, difficulty: "Mahirap", theme: "Pagmamahal", letters: "PAGMAMAHAL", words: ["PAGMAMAHAL", "MAHAL", "MAPA", "ALAM", "GALA"], clue: "Malalim na pag-aaruga" },
   { id: 10, difficulty: "Dalubhasa", theme: "Pananagutan", letters: "PANANAGUTAN", words: ["PANANAGUTAN", "TUNAY", "TANAN", "GUNITA", "PUNA"], clue: "Tungkuling dapat tuparin" },
   { id: 11, difficulty: "Dalubhasa", theme: "Kababaang-loob", letters: "MAPAGKUMBABA", words: ["MAPAGKUMBABA", "BABA", "BUKA", "MAPA", "KAMA"], clue: "Tahimik na lakas ng pagkatao" },
-  { id: 12, difficulty: "Dalubhasa", theme: "Pakikipagkapwa", letters: "PAKIKIPAGKAPWA", words: ["PAKIKIPAGKAPWA", "KAPWA", "WIKA", "PAKI", "API"], clue: "Paggalang at malasakit sa iba" },
+  { id: 12, difficulty: "Dalubhasa", theme: "Pakikipagkapwa", letters: "PAKIKIPAGKAPWA", words: ["PAKIKIPAGKAPWA", "KAPWA", "WIKA", "PAKI", "API"], clue: "Paggalang at malasakit sa bawat tao" },
 ];
 
 type Direction = "across" | "down";
@@ -284,7 +284,7 @@ export default function Home() {
           </header>
 
           <div className="game-content">
-            <div className="clue-pill">{level.theme} · {level.clue}</div>
+            <div className="clue-pill">{level.clue}</div>
             <div className="crossword-wrap">
               <div className="crossword" style={{ gridTemplateColumns: `repeat(${grid.cols}, 1fr)`, gridTemplateRows: `repeat(${grid.rows}, 1fr)` }}>
                 {grid.cells.map((cell) => {
