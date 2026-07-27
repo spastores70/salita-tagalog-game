@@ -129,6 +129,20 @@ function shuffled(value: string) {
   return chars;
 }
 
+function wheelPosition(index: number, total: number) {
+  if (total <= 9) {
+    const angle = (index / total) * Math.PI * 2 - Math.PI / 2;
+    return { x: 50 + Math.cos(angle) * 35, y: 50 + Math.sin(angle) * 35 };
+  }
+
+  const ring = index % 2;
+  const slot = Math.floor(index / 2);
+  const ringCount = Math.ceil((total - ring) / 2);
+  const angle = (slot / ringCount) * Math.PI * 2 - Math.PI / 2 + (ring ? Math.PI / ringCount : 0);
+  const radius = ring ? 23 : 39;
+  return { x: 50 + Math.cos(angle) * radius, y: 50 + Math.sin(angle) * radius };
+}
+
 export default function Home() {
   const [screen, setScreen] = useState<"home" | "levels" | "game">("home");
   const [levelIndex, setLevelIndex] = useState(0);
@@ -286,7 +300,7 @@ export default function Home() {
           <div className="game-content">
             <div className="clue-pill">{level.clue}</div>
             <div className="crossword-wrap">
-              <div className="crossword" style={{ gridTemplateColumns: `repeat(${grid.cols}, 1fr)`, gridTemplateRows: `repeat(${grid.rows}, 1fr)` }}>
+              <div className="crossword" style={{ gridTemplateColumns: `repeat(${grid.cols}, max-content)`, gridTemplateRows: `repeat(${grid.rows}, max-content)` }}>
                 {grid.cells.map((cell) => {
                   const revealed = cell.words.some((word) => found.includes(word));
                   return <span key={`${cell.row}-${cell.col}`} className={`tile ${revealed ? "revealed" : ""}`} style={{ gridRow: cell.row + 1, gridColumn: cell.col + 1 }}>{revealed ? cell.letter : ""}</span>;
@@ -299,7 +313,7 @@ export default function Home() {
             <div className="play-controls">
               <button className="round-action shuffle" onClick={() => { setLetters(shuffled(level.letters)); setMessage("Nahalo na ang mga titik"); }}><span>⤨</span>HALUIN</button>
               <div
-                className="letter-wheel"
+                className={`letter-wheel ${letters.length > 9 ? "dense" : ""}`}
                 ref={wheelRef}
                 onPointerDown={(event) => { setIsDragging(true); setSelected([]); selectFromPoint(event.clientX, event.clientY); }}
                 onPointerMove={(event) => { if (isDragging) selectFromPoint(event.clientX, event.clientY); }}
@@ -307,19 +321,19 @@ export default function Home() {
                 <svg className="swipe-lines" viewBox="0 0 100 100" aria-hidden="true">
                   {selected.slice(1).map((value, index) => {
                     const a = selected[index], b = value;
-                    const angleA = (a / letters.length) * Math.PI * 2 - Math.PI / 2;
-                    const angleB = (b / letters.length) * Math.PI * 2 - Math.PI / 2;
-                    return <line key={`${a}-${b}`} x1={50 + Math.cos(angleA) * 34} y1={50 + Math.sin(angleA) * 34} x2={50 + Math.cos(angleB) * 34} y2={50 + Math.sin(angleB) * 34} />;
+                    const pointA = wheelPosition(a, letters.length);
+                    const pointB = wheelPosition(b, letters.length);
+                    return <line key={`${a}-${b}`} x1={pointA.x} y1={pointA.y} x2={pointB.x} y2={pointB.y} />;
                   })}
                 </svg>
                 {letters.map((letter, index) => {
-                  const angle = (index / letters.length) * Math.PI * 2 - Math.PI / 2;
+                  const point = wheelPosition(index, letters.length);
                   return (
                     <button
                       key={`${letter}-${index}`}
                       data-letter-index={index}
                       className={`letter-node ${selected.includes(index) ? "selected" : ""}`}
-                      style={{ left: `${50 + Math.cos(angle) * 34}%`, top: `${50 + Math.sin(angle) * 34}%` }}
+                      style={{ left: `${point.x}%`, top: `${point.y}%` }}
                       onClick={() => {
                         const next = selected.includes(index) ? selected : [...selected, index];
                         setSelected(next);
