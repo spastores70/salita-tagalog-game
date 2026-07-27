@@ -261,7 +261,10 @@ export default function Home() {
                   {LEVELS.map((item, index) => item.difficulty === difficulty && (
                     <button className={`level-card ${completed.includes(item.id) ? "done" : ""}`} key={item.id} onClick={() => openLevel(index)}>
                       <span className="level-number">{completed.includes(item.id) ? "✓" : item.id}</span>
-                      <span><b>{item.theme}</b><small>{item.words.length} salita</small></span>
+                      <span>
+                        <b>{item.theme}</b>
+                        <small>{Math.min(...item.words.map((word) => word.length))} titik pataas</small>
+                      </span>
                       <em>›</em>
                     </button>
                   ))}
