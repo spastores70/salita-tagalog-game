@@ -114,7 +114,7 @@ body {
 .game-content { position: relative; width: min(980px, 100%); margin: 0 auto; min-height: calc(100svh - 76px); padding: 16px 24px 28px; display: flex; flex-direction: column; align-items: center; }
 .clue-pill { padding: 8px 18px; border-radius: 999px; background: rgba(5,47,47,.82); border: 1px solid rgba(255,200,87,.45); color: #f5e9cc; font-size: 12px; font-weight: 800; text-align: center; }
 .crossword-wrap { width: 100%; height: clamp(205px, 32vh, 315px); display: grid; place-items: center; margin-top: 8px; }
-.crossword { display: grid; column-gap: clamp(3px, .5vw, 7px); row-gap: 2px; max-width: 90%; max-height: 100%; aspect-ratio: 1; }
+.crossword { display: grid; column-gap: clamp(3px, .5vw, 7px); row-gap: 2px; max-width: 90%; max-height: 100%; }
 .tile { display: grid; place-items: center; min-width: 24px; min-height: 24px; width: clamp(28px, 4.4vh, 48px); height: clamp(28px, 4.4vh, 48px); border-radius: 8px; color: var(--ink); background: rgba(255,246,230,.93); border: 2px solid #e9c476; box-shadow: 0 3px 0 #987344, 0 8px 16px rgba(0,0,0,.16); font-family: var(--font-baloo); font-size: clamp(18px, 3vh, 29px); font-weight: 800; }
 .tile.revealed { animation: reveal .32s ease-out; background: #fff8dc; }
 @keyframes reveal { 0% { transform: scale(.4) rotate(-10deg); } 70% { transform: scale(1.12); } }
@@ -123,6 +123,7 @@ body {
 .play-controls { width: 100%; display: grid; grid-template-columns: 1fr minmax(280px, 380px) 1fr; align-items: center; gap: clamp(10px, 3vw, 30px); margin-top: 12px; }
 .letter-wheel { position: relative; width: min(380px, 42vh); aspect-ratio: 1; justify-self: center; border-radius: 50%; border: 5px solid #efc86f; background: radial-gradient(circle, #0c5c59, #073b3a 72%); box-shadow: 0 7px 0 #694e28, 0 16px 38px rgba(0,0,0,.32), inset 0 0 0 5px rgba(255,255,255,.12); touch-action: none; }
 .letter-node { position: absolute; width: clamp(46px, 8vh, 68px); height: clamp(46px, 8vh, 68px); transform: translate(-50%,-50%); border-radius: 50%; border: 2px solid #efd298; background: var(--cream); color: #102a29; font-family: var(--font-baloo); font-size: clamp(25px, 5vh, 40px); font-weight: 900; box-shadow: 0 5px 0 #9f8053, 0 9px 18px rgba(0,0,0,.22); cursor: pointer; z-index: 2; user-select: none; }
+.letter-wheel.dense .letter-node { width: clamp(42px, 6.5vh, 52px); height: clamp(42px, 6.5vh, 52px); font-size: clamp(21px, 3.8vh, 30px); }
 .letter-node.selected { background: var(--gold-bright); transform: translate(-50%,-50%) scale(.92); }
 .swipe-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .swipe-lines line { stroke: #ffe7a1; stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 3px #ffc857); }
@@ -151,6 +152,8 @@ body {
   .crossword-wrap { height: min(31vh, 255px); }
   .play-controls { grid-template-columns: 68px minmax(230px, 1fr) 68px; gap: 5px; }
   .letter-wheel { width: min(310px, 41vh, 72vw); }
+  .letter-node { width: clamp(42px, 12vw, 54px); height: clamp(42px, 12vw, 54px); font-size: clamp(23px, 7vw, 31px); }
+  .letter-wheel.dense .letter-node { width: clamp(36px, 10.5vw, 44px); height: clamp(36px, 10.5vw, 44px); font-size: clamp(19px, 5.8vw, 25px); }
   .round-action { min-width: 0; width: 70px; height: 70px; padding: 8px 4px; border-radius: 22px; font-size: 9px; }
   .round-action span { display: block; margin: 0 0 2px; }
   .round-action small { font-size: 8px; }
