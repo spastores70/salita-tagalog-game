@@ -13,9 +13,9 @@ type Level = {
 };
 
 const LEVELS: Level[] = [
-  { id: 1, difficulty: "Madali", theme: "Damdamin", letters: "PUSO", words: ["PUSO", "USO"], clue: "Pag-ibig at nakagawian" },
-  { id: 2, difficulty: "Madali", theme: "Kalikasan", letters: "ARAW", words: ["ARAW", "AWA", "RAW"], clue: "Liwanag at malasakit" },
-  { id: 3, difficulty: "Madali", theme: "Oras", letters: "GABI", words: ["GABI", "IBA"], clue: "Paglubog ng araw" },
+  { id: 1, difficulty: "Madali", theme: "Damdamin", letters: "PUSO", words: ["USO", "PUSO"], clue: "Magsimula sa tatlong titik" },
+  { id: 2, difficulty: "Madali", theme: "Kalikasan", letters: "ARAW", words: ["AWA", "RAW", "ARAW"], clue: "Mga salitang may tatlo o higit pang titik" },
+  { id: 3, difficulty: "Madali", theme: "Oras", letters: "GABI", words: ["IBA", "GABI"], clue: "Walang dalawang-titik na sagot" },
   { id: 4, difficulty: "Katamtaman", theme: "Tahanan", letters: "BAHAY", words: ["BAHAY", "HABA"], clue: "Lugar na inuuwian" },
   { id: 5, difficulty: "Katamtaman", theme: "Paaralan", letters: "AKLAT", words: ["AKLAT", "ALAT", "TALA"], clue: "Kasama sa pag-aaral" },
   { id: 6, difficulty: "Katamtaman", theme: "Pamilya", letters: "PAMILYA", words: ["PAMILYA", "PILA", "MAYA", "LIMA"], clue: "Mga taong pinakamalapit sa atin" },
